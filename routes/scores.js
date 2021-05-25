@@ -34,7 +34,7 @@ function leaderboard(scores) {
   let leaderboard = [{ rank: 1, name: scores[0].name, score: scores[0].score }];
   const rankIndices = [1, 2, 3, 5, 8, 13, 21];
   for (let i = 0; i < rankIndices.length; i++) {
-    if (rankIndices[i] < scores.length)
+    if (rankIndices[i] <= scores.length)
       leaderboard.push({
         rank: rankIndices[i],
         name: scores[rankIndices[i] - 1].name,
