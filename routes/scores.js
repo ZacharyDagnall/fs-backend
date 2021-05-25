@@ -57,17 +57,14 @@ router.get("/leaderboard", async (req, res) => {
 router.get("/scoreToBeat", async (req, res) => {
   try {
     let scores = await Score.find();
-
+    scores = scores.sort((a, b) => b.score - a.score);
     let stb;
-    let i = 20;
-    do {
+    for (let i = 20; i >= 0; i--) {
       if (scores[i]) {
         stb = scores[i];
-      } else {
-        i--;
+        break;
       }
-    } while (!scores[i]);
-
+    }
     res.json(stb);
   } catch (error) {
     res.json({ message: error });
